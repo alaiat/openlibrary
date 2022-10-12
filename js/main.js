@@ -28,11 +28,17 @@ async function gehituLiburua(){
     //console.log(gehiLiburu)
     let detaileak= gehiLiburu[`ISBN${isbn.value}`].details
     //console.log(detaileak)
-    let isb=detaileak.isbn_13[0]
-    if(isbn.value!= isb){
-        isb=detaileak.isbn_10[0]
-    }
-    let a={"isbn": isb, "egilea": detaileak.authors.map(egile=>egile.name).join(","),"data": detaileak.publish_date,"izenburua":detaileak.title+":"+detaileak.subtitle,"filename":detaileak.covers[0]+ "-M.jpg"}
+
+
+    //IKASTEKO APUNTEA: Horrela ezdu funtzionatzen isbn_13 edo 10 batzutan existitzen ez direlako. Beraz, isbn-a badaukagulez, 
+    //json objetutik hartu beharrean zuzenean hartuko dugu erabiltzaileak sartzen digun baliotik
+    //let isb=detaileak.isbn_13[0]
+    //if(isbn.value!= isb){
+      //  isb=detaileak.isbn_10[0]
+    //}
+
+
+    let a={"isbn": isbn.value, "egilea": detaileak.authors.map(egile=>egile.name).join(","),"data": detaileak.publish_date,"izenburua":detaileak.title+":"+detaileak.subtitle,"filename":detaileak.covers[0]+ "-M.jpg"}
     datubasea.push(a)
     
     indizea=datubasea.length-1
